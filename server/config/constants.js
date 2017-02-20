@@ -8,7 +8,8 @@ const actions = {
 
 const models = {
   board: 'Board',
-  list: 'List'
+  list: 'List',
+  task: 'Task'
 }
 
 
