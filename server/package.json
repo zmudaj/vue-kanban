@@ -1,0 +1,22 @@
+{
+  "name": "server-kanban",
+  "version": "1.0.0",
+  "description": "This is the server for our kanban project",
+  "main": "index.js",
+  "scripts": {
+    "debug": "node --debug index.js",
+    "start": "node index.js"
+  },
+  "author": "Jason",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.16.1",
+    "connect-mongo": "^1.3.2",
+    "connect-mongodb-session": "^1.3.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "mongoose": "^4.8.4"
+  }
+}
