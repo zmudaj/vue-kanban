@@ -2,8 +2,8 @@ import { actions } from '../config/constants'
 
 export default API
 
-function API(modelName, schema) {
-  if (schema.preventDefaultApi) { return }
+function API(model, schema) {
+  if (model.preventDefaultApi) { return {} }
   return {
     get: get,
     post: create,
@@ -46,7 +46,8 @@ function API(modelName, schema) {
     var action = actions.create
 
     let model = new schema(req.body)
-
+    model.creatorId = req.session.uid
+    
     model.save()
       .then(data => {
         return res.send(handleResponse(action, data))
