@@ -12,12 +12,13 @@ function API(model, schema) {
   }
 
   function get(req, res, next) {
-    console.log("requesting api ", modelName)
+    console.log("requesting api ", model.name)
     var id = req.params.id || req.query.id || '';
     var params = req.params.id ? req.params : {};
     var query = req.query.with || '';
-    console.log(query)
 
+    console.log(query)
+    console.log(req.query)
     if (id) {
       schema.findById(id)
         .populate(query)
@@ -28,12 +29,15 @@ function API(model, schema) {
           return next(handleResponse(actions.find, null, error))
         })
     } else {
-      schema.find(params, query)
-        .populate(query)
+
+      // schema.find(params, req.query)
+      schema.find(params, undefined)
+
+        // .populate(req.query.with || '')
         .then(data => {
           var result = handleResponse(actions.findAll, data);
-          result.query = query
-          result.params = params
+          result.query = req.query
+          result.params = req.params
           return res.send(result)
         })
         .catch((error) => {
@@ -92,7 +96,7 @@ function API(model, schema) {
 
   function handleResponse(action, data, error) {
     var response = {
-      schemaType: modelName,
+     schemaType: model.name,
       action: action,
       data: data
     }
