@@ -1,5 +1,7 @@
 let Lists = require('../models/list')
 let Tasks = require('../models/task')
+let User = require('../models/user')
+let Boards = require('../models/board')
 
 export default {
   boardLists: {
@@ -26,6 +28,28 @@ export default {
         }).catch(error => {
           return next(handleResponse(action, null, error))
         })
+    }
+  },
+  inviteToBoard: {
+    path: '/boards/:id/invite',
+    reqType: 'post',
+    method(req, res, next){
+      let action = 'Find Board tasks'
+      let foundUser
+      Users.findOne({userEmail: req.body.email})
+        .then( user => {
+          foundUser = user
+          return Boards.findById(req.params.id)
+        })
+        .then( board =>{
+          board._doc.collaborators.push(foundUser._doc._id)
+          return board.save()
+        })
+        .then(board => {
+          res.send(handleResponse(action, board))
+        }).catch(error => {
+          return next(handleResponse(action, null, error))
+        })  
     }
   }
 }

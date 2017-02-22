@@ -3,6 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import io from '.socket.io-client'
+
+let socket = io('http:localhost:3000')
+
+socket.on('Connected', function(){
+
+})
 
 /* eslint-disable no-new */
 new Vue({
