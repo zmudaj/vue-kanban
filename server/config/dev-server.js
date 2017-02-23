@@ -38,15 +38,15 @@ server.use('/api', cors(corsOptions), api)
 server.use('/', defaultErrorHandler)
 
 // Added socket stuff
-let io = require('socket.io')() 
-io.set('origins', 'http://localhost:8080')
+// let io = require('socket.io')() 
+// io.set('origins', 'http://localhost:8080')
 
-io.on('connection', function(socket){
+// io.on('connection', function(socket){
 
-	socket.emit('Connected!', {
-		socket: socket,
-		message: 'welcome to the jungle'
-	})
-})
+// 	socket.emit('Connected!', {
+// 		socket: socket,
+// 		message: 'welcome to the jungle'
+// 	})
+// })
 // end of socket stuff
 export default server
