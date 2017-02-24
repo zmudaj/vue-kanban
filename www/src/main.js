@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
+// import axios
 // import io from '.socket.io-client'
 
 // let socket = io('http:localhost:3000')
@@ -14,6 +16,9 @@ import router from './router'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  data: {
+    store
+  },
   router,
   template: '<App/>',
   components: { App }
